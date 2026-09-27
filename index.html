@@ -1311,7 +1311,7 @@ window.MountainDawn={get state(){return{...combatPriorAPI.state,enemyDetails:ene
 resetJumpFeel();
 
 /* Mountain Dawn — Veteran Operation. Fictional arcade hazards, never a real-world simulation. */
-const VETERAN_BALANCE={enemyDamage:1.25,startAir:1,airCooldown:20,shieldDuration:1.8,shieldCooldown:14,relayHeal:25,relayRepair:30,healthPickup:20,bossHp:3600,zoneHp:.22,zoneWindup:.07,zoneRecovery:.05};
+const VETERAN_BALANCE={enemyDamage:10/12,startAir:1,airCooldown:20,shieldDuration:1.8,shieldCooldown:14,relayHeal:25,relayRepair:30,healthPickup:20,bossHp:3600,zoneHp:.22,zoneWindup:.07,zoneRecovery:.05};
 const veteranBase={reset,retry,spawnEnemies,moveDefender,updateEnemies,drawSoldier,worldDraw,hud,beginCelebration,enterExitVehicle,damagePlayer,hostileShot,enemyRecovery,startEnemyWindup,hitEnemy,shoot,aim,stepProjectiles,updateThreats,explode,supportImpact,callAirSupport,clearKeys,helpPanel,showCombatOptions,previewDance,win};
 let mines=[],operationCleared=false;
 const EXTRA_ENCOUNTERS=[['bomber',1150],['bomber',1440],['heavy',1720],['vbied',2060],['bomber',2580],['heavy',3100],['bomber',3600],['heavy',3700],['bomber',3900],['vbied',4250],['heavy',4750],['bomber',5330],['heavy',5700],['vbied',6070],['bomber',6500],['vbied',6800],['bomber',7000],['heavy',7380],['bomber',7700],['vbied',7970],['bomber',8200],['vbied',8500]];
