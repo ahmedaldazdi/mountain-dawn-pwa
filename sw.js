@@ -1,5 +1,5 @@
 /* Mountain Dawn service worker — offline-first app shell, cache version 1. */
-const CACHE = 'mountain-dawn-v8';
+const CACHE = 'mountain-dawn-v9';
 const SHELL = [
   './',
   './index.html',

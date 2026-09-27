@@ -1663,9 +1663,9 @@ const THEMES={
 const THEATER_ORDER=['mountain','desert','trench','town'];
 const TYPE_LABEL={assault:'ASSAULT',defend:'DEFEND',specop:'SPECIAL OP',legacy:'FINAL OPERATION'};
 const MISSIONS=[
- {id:'m1',act:'I',name:'FIRST LIGHT',theater:'mountain',type:'assault',len:5200,par:170,diff:.95,density:112,caps:3,mines:9,extras:['heavy','bomber','heavy','rusher'],extraEvery:600,brief:'Push up the Zagros pass and raise the flag over three enemy outposts, then reach the extraction point. Marksmen hold the high ledges.',pool:{rifle:5,rusher:2,marksman:3,heavy:2,lobber:1,bomber:1}},
+ {id:'m1',act:'I',name:'FIRST LIGHT',theater:'mountain',type:'assault',len:5200,par:170,diff:.85,density:112,caps:3,mines:9,extras:['heavy','bomber','heavy','rusher'],extraEvery:600,brief:'Push up the Zagros pass and raise the flag over three enemy outposts, then reach the extraction point. Marksmen hold the high ledges.',pool:{rifle:5,rusher:2,marksman:3,heavy:2,lobber:1,bomber:1}},
  {id:'m2',act:'I',name:"EAGLE'S NEST",theater:'mountain',type:'defend',len:2600,dur:150,diff:1.05,waves:8,waveBase:5,waveGrow:1.6,sides:[-1,1],outpostHp:480,outpostKind:'bunker',brief:'Hold the mountain observation post until the relief column arrives. Attackers come from both flanks. Any of them you leave alone will shoot the bunker.',pool:{rifle:4,rusher:3,marksman:2,lobber:1,heavy:1,bomber:2}},
- {id:'m3',act:'II',name:'SAND ROAD',theater:'desert',type:'assault',len:6000,par:230,diff:1.1,density:108,caps:2,targets:3,targetKind:'cache',techs:[.42,.8],truck:true,mines:10,extras:['heavy','bomber','vbied','heavy'],extraEvery:520,brief:'Cross the open desert and destroy three ammunition caches along the road. Shoot them, bomb them, or stand beside one to plant a charge. Watch for mines and gun trucks.',pool:{rifle:4,rusher:2,heavy:2,marksman:1,bomber:2,vbied:1}},
+ {id:'m3',act:'II',name:'SAND ROAD',theater:'desert',type:'assault',len:6000,par:230,diff:1,density:108,caps:2,targets:3,targetKind:'cache',techs:[.42,.8],truck:true,mines:10,extras:['heavy','bomber','vbied','heavy'],extraEvery:520,brief:'Cross the open desert and destroy three ammunition caches along the road. Shoot them, bomb them, or stand beside one to plant a charge. Watch for mines and gun trucks.',pool:{rifle:4,rusher:2,heavy:2,marksman:1,bomber:2,vbied:1}},
  {id:'m4',act:'II',name:'OASIS NIGHT',theater:'desert',type:'specop',night:true,len:4600,timeLimit:300,par:210,diff:1.2,density:135,cages:3,mines:6,extras:['heavy','marksman'],extraEvery:800,brief:'Slip into the oasis camp at night, free three captives and reach extraction. The pistol is suppressed and sneak attacks hit four times harder. Rifles wake the camp. Crouch to stay hidden.',pool:{rifle:5,marksman:2,heavy:2,rusher:1}},
  {id:'m5',act:'II',name:'CONVOY',theater:'desert',type:'defend',len:2800,dur:165,diff:1.12,waves:9,waveBase:4,waveGrow:1.35,sides:[-1,1],outpostHp:480,outpostKind:'convoy',truck:true,brief:'A broken-down aid convoy must hold out until the mechanics finish. Stop the explosive trucks before they reach it, and do not leave a flank alone for long.',pool:{rifle:5,rusher:2,heavy:2,marksman:1,bomber:1,vbied:1}},
  {id:'m6',act:'III',name:'MUD LINE',theater:'trench',type:'assault',len:5600,par:240,diff:1.25,density:98,caps:3,wire:true,artillery:9,mines:10,extras:['heavy','bomber','lobber','heavy'],extraEvery:420,brief:'Take three enemy trench lines. Sandbags stop bullets, barbed wire slows you down, and mortar markers mean move now.',pool:{rifle:4,lobber:3,marksman:2,heavy:2,rusher:1,bomber:1}},
@@ -1961,7 +1961,7 @@ function autoFireStep(){if(!touchUI||!touchPrefs.autofire||keys.j||mouse.down||m
  // cooldown rings + labels on the action buttons
  const q=k=>touch.querySelector(`.tbtn[data-key="${k}"]`);const dash=q('shift'),shl=q('q'),bomb=q('g'),swap=q('e'),fire=q('j');
  if(bomb)bomb.insertAdjacentHTML('beforeend','<span class="tb-count" id="bombCount"></span>');
- const short=['AK-47','SCTR','CRBN','PSTL'];
+ const short=['AK-47','SCTR','CRBN','PSTL','RPG'];
  setInterval(()=>{try{const b=document.body;b.classList.toggle('playing',mode==='playing');b.classList.toggle('in-game',mode!=='title');b.classList.toggle('in-menu',mode!=='playing'&&mode!=='title'&&mode!=='dead');if(mode!=='playing')return;if(dash)dash.style.setProperty('--cd',clamp(p.dashCd/1.35,0,1));if(shl){shl.style.setProperty('--cd',clamp(p.shieldCd/14,0,1));shl.classList.toggle('live',p.shield>0)}const bc=$('bombCount');if(bc)bc.textContent=p.ammo;if(bomb)bomb.classList.toggle('empty',p.ammo<=0);if(swap)swap.textContent=short[weapon]||'SWAP';if(fire)fire.classList.toggle('auto',touchPrefs.autofire)}catch(e){}},120);
  applyTouchPrefs()}catch(e){}})();
 const campBaseOptions=showCombatOptions;
@@ -2090,7 +2090,7 @@ $('combatOptions').onclick=showCombatOptions;
    paratroopers); desert — BEHEMOTH armored truck (turret fans, telegraphed
    ram you dash through, mortar markers, bombers); trenches — HEAVY TANK
    (main-gun impact circle, low machine-gun sweep you duck under, barrage). */
-const BOSSES={gunship:{name:'HIND GUNSHIP',hp:3500,w:230,h:80},behemoth:{name:'BEHEMOTH ARMORED TRUCK',hp:4000,w:250,h:118},tank:{name:'HEAVY TANK',hp:4500,w:270,h:110}};
+const BOSSES={gunship:{name:'HIND GUNSHIP',hp:3000,w:230,h:80},behemoth:{name:'BEHEMOTH ARMORED TRUCK',hp:3600,w:250,h:118},tank:{name:'HEAVY TANK',hp:4500,w:270,h:110}};
 const MISSION_BOSS={m1:'gunship',m2:'gunship',m3:'behemoth',m5:'behemoth',m6:'tank',m7:'tank'};
 const BOSS_HINT={guns:'CHIN GUN LOCKED · MOVE OFF THE RED LINE',rockets:'ROCKET SALVO · LEAVE THE MARKERS',drop:'PARATROOPERS DEPLOYING',turret:'TURRET LOCKED · BREAK THE LINE',ram:'RAMMING · DASH THROUGH IT',mortar:'MORTARS · LEAVE THE MARKERS',bombers:'BOMBERS DEPLOYING',cannon:'MAIN GUN · GET OUT OF THE CIRCLE',mg:'MACHINE GUN SWEEP · DUCK OR TAKE COVER',barrage:'ARTILLERY CALLED IN'};
 const PATTERNS={gunship:['guns','rockets','guns','drop'],behemoth:['turret','ram','mortar','turret','bombers'],tank:['cannon','mg','cannon','barrage']};
@@ -2185,6 +2185,96 @@ const bossBaseReset=reset;reset=function(){mboss=null;bossFx=[];bossBaseReset();
 const bossBaseRetry=retry;retry=function(){const wasDefend=run&&run.m.type==='defend';const keepDead=run&&run.bossDead;mboss=null;bossFx=[];bossBaseRetry();if(run){run.bossSpawned=false;if(!wasDefend)run.bossDead=keepDead}};
 /* ============================ END BOSS MODULE ============================ */
 
+/* ============================ ARSENAL MODULE ============================
+   New enemy types — SHIELD (front plate blocks bullets; flank, jump for the
+   head, or use explosives), FLAMER (short flame cone; rear fuel tank takes
+   extra damage and bursts), DRONE (hovers, marks the ground, drops a bomb) —
+   and the RPG-7: limited rockets from crates, splash damage, beats shields. */
+const CUSTOM_TYPES=['shield','flamer','drone'];
+Object.assign(ENEMY_META,{shield:{name:'SHIELD',color:'#b9c7d6',hp:190},flamer:{name:'FLAMER',color:'#ff9a5a',hp:150},drone:{name:'DRONE',color:'#9fe0f0',hp:60}});
+for(const [id,add] of Object.entries({m1:{},m2:{drone:1,shield:1},m3:{flamer:1,drone:1},m5:{shield:1,drone:1},m6:{shield:2,flamer:1},m7:{shield:1,flamer:1,drone:1},m8:{shield:1}}))Object.assign(missionById(id).pool,add);
+const arsBaseMake=makeMissionEnemy;
+makeMissionEnemy=function(type,x,id,opts={}){const e=arsBaseMake(type,x,id,opts);if(CUSTOM_TYPES.includes(type)){e.custom=type;e.cd=1+Math.random();if(type==='drone'){e.w=34;e.h=18;e.y=GROUND-250;e.baseY=GROUND-250;e.side=Math.random()<.5?-1:1;e.plat=null;e.t=Math.random()*6}}return e};
+function playerCenter(){return{x:p.x+p.w/2,y:p.y+p.h/2}}
+function stepCustoms(dt){const pc=playerCenter();for(const e of enemies){if(e.dead||!e.custom||e.asleep)continue;if(Math.abs(e.x-p.x)>1150)continue;e.hit=Math.max(0,e.hit-dt);e.recoil=Math.max(0,(e.recoil||0)-dt*22);e.moving=false;e.cd-=dt;
+ const dx=pc.x-(e.x+e.w/2),dist=Math.abs(dx),dy=pc.y-(e.y+e.h/2);
+ if(e.custom==='drone'){e.t+=dt;const tx=pc.x+e.side*150-e.w/2;e.x+=clamp(tx-e.x,-160*dt,160*dt);e.y=e.baseY+Math.sin(e.t*2.2)*16;e.face=dx>=0?1:-1;
+  if(!enemyInView(e))continue;
+  if(e.state==='windup'){e.stateTime+=dt;if(e.stateTime>=e.windup){e.state='ready';e.cd=3.1+Math.random()*.8;e.side*=-1;addDangerMark(e.bombX,.6,46,16,'lobber');droneBombs.push({x:e.x+e.w/2,y:e.y+e.h,tx:e.bombX,t:0,dur:.6});tone(300,.2,'sine',.02,120)}}
+  else if(e.cd<=0){e.state='windup';e.stateTime=0;e.windup=.75;e.bombX=clamp(pc.x,30,WORLD-30);tone(900,.08,'square',.015,900)}continue}
+ if(!enemyInView(e)&&!e.wave)continue;
+ if(e.state!=='windup'&&e.state!=='fire')e.face=dx>=0?1:-1;
+ if(e.custom==='shield'){if(e.state==='windup'){e.stateTime+=dt;if(e.stateTime>=e.windup){if(e.move==='bash'){e.x=clamp(e.x+e.face*38,10,WORLD-60);if(dist<125&&Math.abs(dy)<80){damagePlayer(14);burst(pc.x,pc.y,8,'#e8e0c8',120)}e.cd=1.8}else{const a=Math.atan2(dy,dx);hostileShot(e.x+15+e.face*14,e.y+26,Math.cos(a)*460,Math.sin(a)*460,{damage:10,color:'#ffb3a0',r:3,kind:'shield'});e.cd=2.3}e.state='ready'}continue}
+  if(dist>150&&!e.plat){e.x+=Math.sign(dx)*40*dt;e.moving=true;e.step+=dt*6}
+  if(e.cd<=0){if(dist<175){e.state='windup';e.move='bash';e.stateTime=0;e.windup=.55;e.lockAngle=0}else if(dist<700&&Math.abs(dy)<200){e.state='windup';e.move='shoot';e.stateTime=0;e.windup=.7;e.lockAngle=Math.atan2(dy,Math.abs(dx))}}}
+ else if(e.custom==='flamer'){if(e.state==='windup'){e.stateTime+=dt;if(Math.random()<.4)particles.push({x:e.x+15+e.face*34,y:e.y+28,vx:e.face*20,vy:-20,life:.2,max:.2,size:3,color:'#ffb46e'});if(e.stateTime>=e.windup){e.state='fire';e.flameT=1.3;e.tick=0}continue}
+  if(e.state==='fire'){e.flameT-=dt;e.tick-=dt;for(let k=0;k<3;k++){const sp=260+Math.random()*120,a=(Math.random()-.5)*.35;particles.push({x:e.x+15+e.face*34,y:e.y+28,vx:e.face*Math.cos(a)*sp,vy:Math.sin(a)*sp-20,life:.42,max:.42,size:6+Math.random()*7,color:['#ffcf6a','#ff8a3a','#ff5a2a'][k]})}
+   const inCone=dx*e.face>0&&dist<210&&Math.abs(dy)<62;if(inCone&&e.tick<=0){e.tick=.25;damagePlayer(9)}if(e.flameT<=0){e.state='ready';e.cd=2.4}continue}
+  if(dist>160&&!e.plat){e.x+=Math.sign(dx)*58*dt;e.moving=true;e.step+=dt*7}
+  if(e.cd<=0&&dist<205&&Math.abs(dy)<90){e.state='windup';e.stateTime=0;e.windup=.7;e.lockAngle=0}}}}
+let droneBombs=[];
+const arsBaseUpdEnemies=updateEnemies;
+updateEnemies=function(dt){const cs=enemies.filter(e=>e.custom&&!e.dead);cs.forEach(e=>e.dead=true);try{arsBaseUpdEnemies(dt)}finally{cs.forEach(e=>e.dead=false)}if(mode==='playing')stepCustoms(dt)};
+const arsBaseHit=hitEnemy;
+hitEnemy=function(e,dmg){if(e.custom==='flamer'&&!e.dead&&Math.sign(p.x+15-(e.x+15))!==e.face)dmg*=1.5;const alive=!e.dead;arsBaseHit(e,dmg);if(alive&&e.dead){if(e.custom==='flamer'){const x=e.x+15;burst(x,e.y+30,30,'#ff9a4a',240);addScorch(x,70);sfxBoom(.8);for(const o of enemies)if(!o.dead&&o!==e&&Math.abs(o.x+15-x)<95)arsBaseHit(o,110);if(Math.abs(p.x+15-x)<85)damagePlayer(16)}if(e.custom==='drone'){burst(e.x+17,e.y+9,22,'#9fe0f0',200);particles.push({x:e.x+17,y:e.y+9,vx:0,vy:0,life:.3,max:.3,size:60,color:'#cfefff',ring:true});sfxBoom(.5)}}};
+function shieldPlate(e){return{x:e.face>0?e.x+29:e.x-9,y:e.y+18,w:10,h:44}}
+let lastClang=0;
+function blockShieldShots(dt){for(const e of enemies){if(e.dead||e.custom!=='shield')continue;const pl=shieldPlate(e);for(const b of bullets){if(!b.friendly||b.life<=0||b.rocket)continue;if(Math.sign(b.vx)===e.face)continue;const seg={px:b.x,py:b.y,x:b.x+b.vx*dt,y:b.y+b.vy*dt};if(segmentBox(seg,pl.x,pl.y,pl.w,pl.h)){b.life=0;b.blocked=true;sparks.push({x:pl.x+pl.w/2,y:clamp(b.y,pl.y,pl.y+pl.h),life:.12,dir:-e.face});if(time-lastClang>.07){lastClang=time;sfxClang()}}}}bullets=bullets.filter(b=>!b.blocked)}
+
+/* ---------- RPG-7 ---------- */
+weapons.push({name:'RPG-7',label:'05 / RPG-7',rate:1.05,speed:640,damage:0,color:'#ffb46e',spread:0,count:1});
+let rpgAmmo=0,rockets=[],rpgCrates=[],autoFiring=false;
+function placeRpgCrates(){let xs=[];if(isLegacy())xs=[3100,6600];else if(run.outpost)xs=[run.outpost.x-220,run.outpost.x+run.outpost.w+220];else xs=[Math.round(WORLD*.45),run.layout.ext-1450];rpgCrates=xs.map(x=>({x,taken:false}))}
+function takeRpg(c){c.taken=true;rpgAmmo=Math.min(6,rpgAmmo+3);weapon=4;popup('RPG-7 · +3 ROCKETS',p.x+15,p.y-20,'#ffcf8f');tone(520,.14,'triangle',.04,820)}
+const arsBaseCycle=cycleWeapon;
+cycleWeapon=function(){if(weapon===4){const owned=[0,1,2,3].filter(i=>weaponOwned[i]);weapon=owned[0]??3;popup(weapons[weapon].name,p.x,p.y-15);tone(600,.06,'sine',.025,800);return}const owned=[0,1,2,3].filter(i=>weaponOwned[i]);const idx=owned.indexOf(weapon);if(idx===owned.length-1&&rpgAmmo>0){weapon=4;popup('RPG-7 · '+rpgAmmo+' ROCKETS',p.x,p.y-15,'#ffcf8f');tone(600,.06,'sine',.025,800);return}arsBaseCycle()};
+function rocketWorth(){const s=playerMuzzle();if(mboss&&mboss.state!=='enter'){const c=bossCenter();if((c.x-s.x)*p.face>0&&Math.abs(c.x-s.x)<900&&Math.abs(c.x-s.x)>170)return true}const ahead=enemies.filter(e=>!e.dead&&!e.asleep&&(e.x+15-s.x)*p.face>170&&Math.abs(e.x+15-s.x)<720&&enemyInView(e));if(ahead.some(e=>['heavy','shield','flamer','vbied'].includes(e.type)))return true;return ahead.some(a=>ahead.filter(b=>Math.abs(b.x-a.x)<180).length>=3)}
+const arsBaseShoot=shoot;
+shoot=function(){if(weapon!==4||activeVehicle())return arsBaseShoot();if(p.cd>0)return;if(rpgAmmo<=0){cycleWeapon();return}if(autoFiring&&!rocketWorth())return;
+ const a=aim(),m=playerMuzzle(),x=m.x+Math.cos(a)*34,y=m.y+Math.sin(a)*34;p.face=Math.cos(a)>=0?1:-1;p.cd=weapons[4].rate;rpgAmmo--;rockets.push({x,y,px:x,py:y,vx:Math.cos(a)*640,vy:Math.sin(a)*640,life:2.2,rocket:true});
+ burst(m.x-p.face*26,m.y,10,'#cfc6b0',140);burst(x,y,6,'#ffcf8a',110);sfxShot(4);shake=Math.max(shake,4);heroKick=1.6;muzzleGlow=.08;if(run&&run.m.type==='specop')noise(700);if(rpgAmmo<=0)setTimeout(()=>{if(weapon===4&&rpgAmmo<=0)cycleWeapon()},500)};
+function explodeRocket(x,y){burst(x,y,40,'#ffcf8f',300);particles.push({x,y,vx:0,vy:0,life:.35,max:.35,size:140,color:'#ffd69a',ring:true});addScorch(x,90);sfxBoom(1.2);shake=Math.max(shake,11);impactMarks.push({x,y:Math.min(y,GROUND-10),life:.4,max:.4,kind:'blast',radius:130});
+ for(const e of enemies){if(e.dead)continue;const d=Math.hypot(e.x+e.w/2-x,(e.y+e.h/2-y)*.7);if(d<135)hitEnemy(e,Math.round(200*(1-d/270)))}
+ if(mboss){const c=bossCenter();if(Math.hypot(c.x-x,(c.y-y)*.6)<mboss.w*.6+60)damageBoss(280)}
+ if(run&&run.targets)for(const t of run.targets)if(!t.destroyed&&Math.abs(t.x-x)<150)damageTarget(t,300);
+ for(const br of barrels)if(!br.dead&&Math.abs(br.x+13-x)<100)explodeBarrel(br);for(const mi of mines)if(mi.state==='armed'&&Math.abs(mi.x-x)<110)disarmMine(mi);
+ if(Math.hypot(p.x+15-x,(p.y+33-y)*.7)<90)damagePlayer(20)}
+function stepRockets(dt){for(const r of rockets){r.px=r.x;r.py=r.y;r.x+=r.vx*dt;r.y+=r.vy*dt;r.vy+=60*dt;r.life-=dt;if(Math.random()<.9)particles.push({x:r.x-r.vx*.02,y:r.y-r.vy*.02,vx:(Math.random()-.5)*30,vy:-20,life:.5,max:.5,size:4+Math.random()*4,color:'#b8b2a4'});
+ let hit=r.y>=GROUND-4||r.life<=0;if(!hit)for(const e of enemies){if(!e.dead&&segmentBox(r,e.x,e.y,e.w,e.h)){hit=true;break}}if(!hit&&mboss&&mboss.state!=='enter'&&mboss.state!=='dying'){const bb=bossBox();if(segmentBox(r,bb.x,bb.y,bb.w,bb.h))hit=true}
+ if(!hit&&run&&run.targets)for(const t of run.targets){if(t.destroyed)continue;const tb=targetBox(t);if(segmentBox(r,tb.x,tb.y,tb.w,tb.h)){hit=true;break}}
+ if(!hit)for(const sb of sandbags)if(segmentBox(r,sb.x,sb.y,sb.w,sb.h)){hit=true;break}
+ if(hit){r.dead=true;explodeRocket(r.x,Math.min(r.y,GROUND-6))}}rockets=rockets.filter(r=>!r.dead);
+ for(const c of rpgCrates){if(c.taken)continue;if(Math.abs(p.x+15-c.x)<44&&p.y+p.h>GROUND-90)takeRpg(c)}
+ for(const bmb of droneBombs)bmb.t+=dt;droneBombs=droneBombs.filter(b=>b.t<b.dur)}
+const arsBaseStepProj=stepProjectiles;
+stepProjectiles=function(dt){blockShieldShots(dt);arsBaseStepProj(dt);if(mode==='playing')stepRockets(dt)};
+const arsBaseAuto=autoFireStep;autoFireStep=function(){autoFiring=true;try{arsBaseAuto()}finally{autoFiring=false}};
+const arsBaseSave=saveRun;saveRun=function(d){if(weapon===4&&!d){const w0=weapon;weapon=0;try{arsBaseSave(d)}finally{weapon=w0}return}arsBaseSave(d)};
+/* ---------- drawing ---------- */
+function drawDrone(e){ctx.save();ctx.translate(e.x+e.w/2,e.y+e.h/2);const warn=e.state==='windup';rect(-15,-5,30,10,e.hit>0?'#fff2c4':'#3e4a52');rect(-8,-9,16,5,'#56646c');line(-15,-5,-22,-10,'#2a3238',3);line(15,-5,22,-10,'#2a3238',3);for(const sx of[-22,22]){ctx.globalAlpha=.45;ctx.fillStyle='#cfd8dc';ctx.beginPath();ctx.ellipse(sx,-11,12,2.4,0,0,7);ctx.fill();ctx.globalAlpha=1}rect(-4,5,8,6,'#2a3238');ctx.fillStyle=warn&&Math.sin(time*30)>0?'#ff4a3a':'#ff8a6a';ctx.beginPath();ctx.arc(0,8,2.6,0,7);ctx.fill();ctx.restore();
+ const m=ENEMY_META.drone,ly=e.y-20;rect(e.x-11,ly-12,56,15,'#112831dd');text(m.name,e.x+17,ly-1,8,m.color,'center');if(e.hp<e.maxhp){rect(e.x-2,e.y-6,38,4,'#15292f');rect(e.x-2,e.y-6,38*e.hp/e.maxhp,4,m.color)}
+ if(warn){const k=clamp(e.stateTime/e.windup,0,1);ctx.setLineDash([6,6]);line(e.x+17,e.y+e.h,e.bombX,GROUND-4,'#ff8a6a',1.2+k*1.5);ctx.setLineDash([])}}
+function drawShieldExtras(e){const pl=shieldPlate(e),bashing=e.state==='windup'&&e.move==='bash',off=bashing?e.face*6*clamp(e.stateTime/e.windup,0,1):0;rect(pl.x+off,pl.y-2,pl.w,pl.h+4,'#5d6873');rect(pl.x+off+1,pl.y,pl.w-2,pl.h,'#7c8894');rect(pl.x+off+2,pl.y+8,pl.w-4,4,'#2c3339');line(pl.x+off+2,pl.y+20,pl.x+off+pl.w-2,pl.y+20,'#9aa6b1',1)}
+function drawFlamerExtras(e){const bx=e.face>0?e.x-4:e.x+26;rect(bx,e.y+18,9,26,'#a8453a');rect(bx,e.y+22,9,3,'#e0b070');rect(bx,e.y+34,9,3,'#e0b070');const nx=e.x+15+e.face*30;rect(Math.min(nx,nx+e.face*12),e.y+25,12,5,'#3a3a36');if(e.state==='windup'||e.state==='fire')glow(nx+e.face*10,e.y+28,e.state==='fire'?60:22,'#ffb46e66')}
+const arsBaseDrawSoldier=drawSoldier;
+drawSoldier=function(s,hero){if(hero){arsBaseDrawSoldier(s,hero);if(weapon===4&&!activeVehicle()&&!s.corpse){const a=mode==='playing'?aim():(p.face>0?0:Math.PI),m=playerMuzzle();ctx.save();ctx.translate(m.x-p.face*heroKick*3,m.y-4);ctx.rotate(a);rect(-22,-4,48,8,'#56603f');rect(-24,-5,6,10,'#3a4029');if(rpgAmmo>0){poly([[26,-6],[40,0],[26,6]],'#7a8456');rect(24,-6,4,12,'#3a4029')}ctx.restore()}return}
+ if(s.custom==='drone')return drawDrone(s);arsBaseDrawSoldier(s,hero);if(s.custom==='shield')drawShieldExtras(s);else if(s.custom==='flamer')drawFlamerExtras(s)};
+function drawArsenalWorld(){for(const r of rockets){const a=Math.atan2(r.vy,r.vx);ctx.save();ctx.translate(r.x,r.y);ctx.rotate(a);rect(-12,-3,18,6,'#56603f');poly([[6,-4],[16,0],[6,4]],'#7a8456');ctx.restore();glow(r.x-Math.cos(a)*14,r.y-Math.sin(a)*14,22,'#ffb46e99')}
+ for(const b of droneBombs){const k=b.t/b.dur,x=b.x+(b.tx-b.x)*k,y=b.y+(GROUND-b.y)*k*k;rect(x-3,y-5,6,10,'#2a3238')}
+ for(const c of rpgCrates){if(c.taken||c.x<cam-60||c.x>cam+W+60)continue;const yy=GROUND-30+Math.sin(time*4)*3;glow(c.x,yy,36,'#ffcf8f55');rect(c.x-22,yy-12,44,24,'#4b5135');ctx.strokeStyle='#ffcf8f';ctx.lineWidth=1.5;ctx.strokeRect(c.x-22,yy-12,44,24);text('RPG',c.x,yy+5,12,'#ffcf8f','center')}}
+const arsBaseWorld=worldDraw;worldDraw=function(){arsBaseWorld();ctx.save();ctx.translate(-cam,0);drawArsenalWorld();ctx.restore()};
+const arsBaseReset=reset;reset=function(){rockets=[];droneBombs=[];rpgAmmo=0;arsBaseReset();if(run)placeRpgCrates()};
+const arsBaseRetry=retry;retry=function(){rockets=[];droneBombs=[];arsBaseRetry();if(run&&run.m.type==='assault')rpgCrates.forEach(c=>c.taken=false);if(weapon===4&&rpgAmmo<=0)weapon=0};
+setInterval(()=>{try{weapons[4].label='05 / RPG-7 ×'+rpgAmmo}catch(e){}},150);
+/* ========================== END ARSENAL MODULE ========================== */
+
+/* ============================ WEATHER ============================ */
+function drawWeather(){if(!run||isLegacy()||fxEffective()===0)return;const T=currentTheme(),n=fxEffective()===1?.5:1;
+ if(T==='mountain'){ctx.fillStyle='#f4f7fb';for(let i=0;i<90*n;i++){const sp=.4+(i%5)*.15,x=((i*97.3+time*28*sp-cam*(.3+sp*.5))%(W+40)+W+40)%(W+40)-20,y=((i*53.7+time*60*sp)%(H+20))-10;ctx.globalAlpha=.35+.4*sp;ctx.fillRect(x+Math.sin(time*1.3+i)*6,y,1.6+sp*1.6,1.6+sp*1.6)}ctx.globalAlpha=1}
+ else if(T==='desert'&&!(run.m.night)){for(let i=0;i<60*n;i++){const x=((i*131.7-time*(260+(i%4)*60)-cam*.6)%(W+80)+W+80)%(W+80)-40,y=440+((i*37.1)%170)+Math.sin(time*3+i)*6;ctx.globalAlpha=.18+(i%3)*.08;line(x,y,x+14+(i%3)*6,y-1,'#f3dcb0',1.2)}ctx.globalAlpha=.07+.04*Math.sin(time*.7);ctx.fillStyle='#e9c690';ctx.fillRect(0,420,W,190);ctx.globalAlpha=1}
+ else if(T==='trench'){for(let i=0;i<110*n;i++){const x=((i*71.9-time*40-cam*.4)%(W+60)+W+60)%(W+60)-30,y=((i*43.3+time*520)%(H+40))-20;ctx.globalAlpha=.18;line(x,y,x-3,y+14,'#c9d2d6',1)}ctx.globalAlpha=1}}
+const wxBaseWorld=worldDraw;worldDraw=function(){wxBaseWorld();drawWeather()};
+/* ========================== END WEATHER ========================== */
 spawnEnemies();requestAnimationFrame(frame);
 </script><div id="installHint" role="status"></div><script>
 /* PWA layer: service worker registration + install hint. Silently skipped when unsupported. */
